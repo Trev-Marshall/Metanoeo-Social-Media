@@ -8,6 +8,7 @@ import {
   Route
 } from 'react-router-dom';
 import User from './Components/User';
+import SignIn from './Components/SignIn'
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
       </Container>
 
       <Switch>
+        <Route path="/signin">
+          <SignIn />
+        </Route>
         <Route path="/user">
           <User />
         </Route>
