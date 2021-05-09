@@ -26,15 +26,19 @@ function App() {
 export default App;
 
 const Container = styled.div`
-
+  position: relative; 
 `
 
 const Navigation = styled.nav`
   display: flex;
   height: 60px;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid lightgray;
+  position: fixed;
+  z-index: 2;
+  background-color: white;
 `
 
 const LogoContainer = styled.div`

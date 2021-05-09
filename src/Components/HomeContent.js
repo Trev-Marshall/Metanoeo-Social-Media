@@ -12,8 +12,10 @@ function HomeContent() {
         <Post />
       </PostSection>
       <SideBar>
-        <Updates />
-        <NewResources />
+        <SideBarDiv>
+          <Updates />
+          <NewResources />
+        </SideBarDiv>
       </SideBar>
     </Container>
   )
@@ -22,20 +24,25 @@ function HomeContent() {
 export default HomeContent
 
 const Container = styled.div`
-  padding: 10px;
+  padding: 70px 10px 10px 10px;
   display: flex;
   position: relative;
 `
 
 const PostSection = styled.div`
   background-color: #f0f4f5;
-  margin: 0 20px 0 100px;
+  margin: 0 20px 0 150px;
   width: 50%;
   border-radius: 10px;
 `
 
 const SideBar = styled.div`
+  margin: 0 10px 0 auto;
+  width: 30%;
+`
+
+const SideBarDiv = styled.div`
+  position: sticky;
+  top: 70px;
   background-color: #f0f4f5;
-  margin: 0 0 0 auto;
-  width: 20%;
 `
