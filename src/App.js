@@ -1,5 +1,6 @@
 import './App.css';
 import styled from 'styled-components';
+import HomeContent from './Components/HomeContent'
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
           <UserPhoto src="https://imgur.com/oWr9MTw.png" />
         </OptionsDiv>
       </Navigation>
+
+      <HomeContent />
     </Container>
   );
 }
