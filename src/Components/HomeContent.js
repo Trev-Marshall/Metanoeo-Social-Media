@@ -39,10 +39,12 @@ const PostSection = styled.div`
 const SideBar = styled.div`
   margin: 0 10px 0 auto;
   width: 30%;
+  padding: 5px;
 `
 
 const SideBarDiv = styled.div`
   position: sticky;
+  border-radius: 10px;
   top: 70px;
   background-color: #f0f4f5;
 `

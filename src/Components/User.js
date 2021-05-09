@@ -50,6 +50,7 @@ const UserName = styled.h1`
 const FollowStats = styled.h2`
   font-size: 17px;
   flex: 1;
+  opacity: .5;
 `
 
 const Bio = styled.p`

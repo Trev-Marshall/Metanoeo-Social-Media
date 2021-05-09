@@ -35,6 +35,7 @@ const TopDiv = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 6px;
+  align-items: center;
 `
 
 const UserInfo = styled.div`
@@ -50,7 +51,8 @@ const UserName = styled.p`
   padding-left: 10px;
 `
 const OptionThingy = styled.p`
-  margin-right: 17px;
+  margin: 0 17px 0 0;
+  font-size: 20px;
 `
 
 const PostImg = styled.img`
@@ -77,6 +79,7 @@ const Description = styled.p`
   padding-bottom: 25px;
   border-bottom: 1px solid gray;
   margin: 0;
+  opacity: .6;
 `
 
 const DescUser = styled.span`
