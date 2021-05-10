@@ -6,7 +6,7 @@ import { db, provider, auth } from '../firebase'
 
 function SignIn() {
   const dispatch = useDispatch();
-  const userFollowers = useSelector(selectFollowers);
+  // const userFollowers = useSelector(selectFollowers);
 
   const signIn = () => {
     auth.signInWithPopup(provider)
@@ -15,11 +15,10 @@ function SignIn() {
         userRef.get().then((doc) => {
           if (!doc.exists) {
             userRef.set({
-              followers: null,
-              following: null,
-              userPhoto: null
-            });
-            return; // watch this later as it may create unreachable code
+              followers: 0,
+              following: 0,
+              userPhoto: ''
+            }); // watch this later as it may create unreachable code
           } else {
             userRef.get().then((doc) => {
               const data = doc.data();

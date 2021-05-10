@@ -5,7 +5,7 @@ const signInSlice = createSlice({
   initialState: {
     followers: null,
     following: null,
-    userPhoto: null
+    userPhoto: ''
   },
   reducers: {
     updateUser: (state, action) => {
@@ -16,7 +16,7 @@ const signInSlice = createSlice({
     updateSignOutUser: state => {
       state.followers = null;
       state.following = null;
-      state.userPhoto = null;
+      state.userPhoto = '';
     }
   }
 });
