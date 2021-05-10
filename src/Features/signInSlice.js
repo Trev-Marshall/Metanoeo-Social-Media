@@ -23,8 +23,8 @@ const signInSlice = createSlice({
 
 export const { updateUser, updateSignOutUser } = signInSlice.actions;
 
-export const selectFollowers = (state) => state.name.followers;
-export const selectFollowing = (state) => state.name.following;
-export const selectUserPhoto = (state) => state.name.userPhoto;
+export const selectFollowers = (state) => state.user.followers;
+export const selectFollowing = (state) => state.user.following;
+export const selectUserPhoto = (state) => state.user.userPhoto;
 
 export default signInSlice.reducer;

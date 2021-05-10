@@ -1,8 +1,13 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { selectFollowers, updateUser } from '../Features/signInSlice';
 import { db, provider, auth } from '../firebase'
 
 function SignIn() {
+  const dispatch = useDispatch();
+  const userFollowers = useSelector(selectFollowers);
+
   const signIn = () => {
     auth.signInWithPopup(provider)
       .then((result) => {
@@ -16,7 +21,13 @@ function SignIn() {
             });
             return; // watch this later as it may create unreachable code
           } else {
-            console.log(doc);
+            userRef.get().then((doc) => {
+              const data = doc.data();
+              dispatch(
+                updateUser(data)
+              )
+            }
+            );
           }
         })
         console.log(result.user.uid);
