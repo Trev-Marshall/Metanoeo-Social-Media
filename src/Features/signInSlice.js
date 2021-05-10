@@ -8,15 +8,15 @@ const signInSlice = createSlice({
     userPhoto: null
   },
   reducers: {
-    updateUser: state => {
-      state.followers = action.payload.followers,
-        state.following = action.payload.following,
-        state.userPhoto = action.payload.userPhoto
+    updateUser: (state, action) => {
+      state.followers = action.payload.followers;
+      state.following = action.payload.following;
+      state.userPhoto = action.payload.userPhoto;
     },
     updateSignOutUser: state => {
-      state.followers = null,
-        state.following = null,
-        state.userPhoto = null
+      state.followers = null;
+      state.following = null;
+      state.userPhoto = null;
     }
   }
 });

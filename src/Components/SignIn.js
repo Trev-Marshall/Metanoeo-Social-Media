@@ -1,11 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
-import { provider, auth } from '../firebase'
+import { db, provider, auth } from '../firebase'
 
 function SignIn() {
   const signIn = () => {
     auth.signInWithPopup(provider)
       .then((result) => {
+        const userRef = db.collection('users').doc(result.user.uid);
+        userRef.get().then((doc) => {
+          if (!doc.exists) {
+            userRef.set({
+              followers: null,
+              following: null,
+              userPhoto: null
+            });
+            return; // watch this later as it may create unreachable code
+          } else {
+            console.log(doc);
+          }
+        })
         console.log(result.user.uid);
       })
       .catch((error) => {
