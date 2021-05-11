@@ -11,10 +11,12 @@ import User from './Components/User';
 import SignIn from './Components/SignIn';
 import { updateSignOutUser } from './Features/signInSlice'
 import { auth } from './firebase';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUserName } from './Features/signInSlice'
 
 function App() {
   const dispatch = useDispatch();
+  const userName = useSelector(selectUserName);
 
   const signOut = () => {
     auth.signOut().then(() => {
@@ -26,41 +28,45 @@ function App() {
 
   return (
     <Router>
-      <Container>
-        <Navigation>
-          <LogoContainer>
-            <Link to="/">
-              <Logo src="https://imgur.com/WGXVyuA.png" />
-            </Link>
-          </LogoContainer>
-          <SearchBar placeholder="Search..." />
-          <OptionsDiv>
-            <Notifs>
-              Notifs
+      {
+        !userName ? (
+          <SignIn />
+        ) : (
+          <Container>
+            <Navigation>
+              <LogoContainer>
+                <Link to="/">
+                  <Logo src="https://imgur.com/WGXVyuA.png" />
+                </Link>
+              </LogoContainer>
+              <SearchBar placeholder="Search..." />
+              <OptionsDiv>
+                <Notifs>
+                  Notifs
             </Notifs>
-            <Dropdown>
-              <DropdownSel>
-                <UserBtn><UserPhoto src="https://imgur.com/oWr9MTw.png" /></UserBtn>
-                <Ul>
-                  <Li>
-                    <Link to="/user" style={{ color: "black", textDecoration: "none" }} >Profile</Link>
-                  </Li>
-                  <Li>
-                    <Link to="/signin" onClick={signOut} style={{ color: "black", textDecoration: "none" }} >LogOut</Link>
-                  </Li>
-                </Ul>
-              </DropdownSel>
-            </Dropdown>
-          </OptionsDiv>
-        </Navigation>
-      </Container>
+                <Dropdown>
+                  <DropdownSel>
+                    <UserBtn><UserPhoto src="https://imgur.com/oWr9MTw.png" /></UserBtn>
+                    <Ul>
+                      <Li>
+                        <Link to="/user" style={{ color: "black", textDecoration: "none" }} >Profile</Link>
+                      </Li>
+                      <Li>
+                        <Link to="/signin" onClick={signOut} style={{ color: "black", textDecoration: "none" }} >LogOut</Link>
+                      </Li>
+                    </Ul>
+                  </DropdownSel>
+                </Dropdown>
+              </OptionsDiv>
+            </Navigation>
+          </Container>
+        )
+      }
+
 
       <Switch>
         <Route exact path="/">
           <HomeContent />
-        </Route>
-        <Route path="/signin">
-          <SignIn />
         </Route>
         <Route path="/user">
           <User />
