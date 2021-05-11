@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { selectFollowers, updateUser } from '../Features/signInSlice';
 import { db, provider, auth } from '../firebase'
+import { useHistory } from 'react-router-dom'
 
 function SignIn() {
   const dispatch = useDispatch();
+  const history = useHistory();
   // const userFollowers = useSelector(selectFollowers);
 
   const signIn = () => {
@@ -17,9 +19,10 @@ function SignIn() {
             userRef.set({
               followers: 0,
               following: 0,
-              userPhoto: ''
-            }); // watch this later as it may create unreachable code
-          } else {
+              userPhoto: '',
+              userName: '',
+            });
+          } else if (doc.exists) {
             userRef.get().then((doc) => {
               const data = doc.data();
               dispatch(
@@ -29,7 +32,7 @@ function SignIn() {
             );
           }
         })
-        console.log(result.user.uid);
+        history.push("/");
       })
       .catch((error) => {
         console.log(error)

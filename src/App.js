@@ -8,7 +8,7 @@ import {
   Route
 } from 'react-router-dom';
 import User from './Components/User';
-import SignIn from './Components/SignIn'
+import SignIn from './Components/SignIn';
 
 function App() {
   return (
@@ -25,22 +25,32 @@ function App() {
             <Notifs>
               Notifs
             </Notifs>
-            <Link to="/user">
-              <UserPhoto src="https://imgur.com/oWr9MTw.png" />
-            </Link>
+            <Dropdown>
+              <DropdownSel>
+                <UserBtn><UserPhoto src="https://imgur.com/oWr9MTw.png" /></UserBtn>
+                <Ul>
+                  <Li>
+                    <Link to="/user" style={{ color: "black", textDecoration: "none" }} >Profile</Link>
+                  </Li>
+                  <Li>
+                    <Link to="/signin" style={{ color: "black", textDecoration: "none" }} >LogOut</Link>
+                  </Li>
+                </Ul>
+              </DropdownSel>
+            </Dropdown>
           </OptionsDiv>
         </Navigation>
       </Container>
 
       <Switch>
+        <Route exact path="/">
+          <HomeContent />
+        </Route>
         <Route path="/signin">
           <SignIn />
         </Route>
         <Route path="/user">
           <User />
-        </Route>
-        <Route path="/">
-          <HomeContent />
         </Route>
       </Switch>
     </Router>
@@ -98,4 +108,65 @@ const Notifs = styled.p`
 const UserPhoto = styled.img`
   height: 50px;
   border-radius: 50%;
+`
+
+const Dropdown = styled.div`
+  height: 10vh;
+  align-items: center;
+  margin-top: 15px;
+`
+
+const Ul = styled.ul`
+  position: absolute;
+  left: -10px;
+  margin-top: 10px;
+  width: 85px;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 9px;
+  height: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+  padding-left: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+`
+
+const DropdownSel = styled.div`
+  position: relative;
+`
+
+
+const Li = styled.li`
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    opacity: .65;
+    background-color: lightgray;
+  }
+`
+
+const UserBtn = styled.button`
+  background-color: #00000000;
+  border: none;
+  cursor: pointer;
+  transition: opacity 250ms ease;
+  &:hover {
+    opacity: .75;
+  }
+  &:focus + ${Ul} {
+    pointer-events: all;
+    opacity: 1;
+  }
+  &:focus + ${Li} {
+    pointer-events: all;
+  }
 `
