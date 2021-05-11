@@ -1,14 +1,13 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import { selectFollowers, updateUser } from '../Features/signInSlice';
+import { updateUser } from '../Features/signInSlice';
 import { db, provider, auth } from '../firebase'
 import { useHistory } from 'react-router-dom'
 
 function SignIn() {
   const dispatch = useDispatch();
   const history = useHistory();
-  // const userFollowers = useSelector(selectFollowers);
 
   const signIn = () => {
     auth.signInWithPopup(provider)
@@ -20,7 +19,7 @@ function SignIn() {
               followers: 0,
               following: 0,
               userPhoto: '',
-              userName: '',
+              userName: result.user.photoURL,
             });
           } else if (doc.exists) {
             userRef.get().then((doc) => {

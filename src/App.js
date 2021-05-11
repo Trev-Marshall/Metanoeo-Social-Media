@@ -9,8 +9,21 @@ import {
 } from 'react-router-dom';
 import User from './Components/User';
 import SignIn from './Components/SignIn';
+import { updateSignOutUser } from './Features/signInSlice'
+import { auth } from './firebase';
+import { useDispatch } from 'react-redux';
 
 function App() {
+  const dispatch = useDispatch();
+
+  const signOut = () => {
+    auth.signOut().then(() => {
+      dispatch(updateSignOutUser());
+    }).catch((err) => {
+      alert(err.message);
+    })
+  }
+
   return (
     <Router>
       <Container>
@@ -33,7 +46,7 @@ function App() {
                     <Link to="/user" style={{ color: "black", textDecoration: "none" }} >Profile</Link>
                   </Li>
                   <Li>
-                    <Link to="/signin" style={{ color: "black", textDecoration: "none" }} >LogOut</Link>
+                    <Link to="/signin" onClick={signOut} style={{ color: "black", textDecoration: "none" }} >LogOut</Link>
                   </Li>
                 </Ul>
               </DropdownSel>
@@ -56,6 +69,7 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;
 

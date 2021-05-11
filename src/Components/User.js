@@ -1,16 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 import PostBlock from './PostBlock'
+import { selectFollowers, selectFollowing, selectUserName, selectUserPhoto } from '../Features/signInSlice'
+import { useSelector } from 'react-redux'
 
 function User() {
+  const userPhoto = useSelector(selectUserPhoto);
+  const followers = useSelector(selectFollowers);
+  const following = useSelector(selectFollowing);
+  const userName = useSelector(selectUserName);
   return (
     <Container>
       <TopContainer>
-        <UserPhoto src="https://imgur.com/oWr9MTw.png" />
-        <UserName>Not Your Dev</UserName>
+        <UserPhoto src={userPhoto} />
+        <UserName>{userName}</UserName>
       </TopContainer>
       <MidContainer>
-        <FollowStats>Followers: 103 || Following: 15</FollowStats>
+        <FollowStats>Followers: {followers} || Following: {following}</FollowStats>
       </MidContainer>
       <Bio>I make web applications that are better than everyone else's</Bio>
       <PostContainer>
