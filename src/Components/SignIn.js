@@ -13,7 +13,9 @@ function SignIn() {
     auth.signInWithPopup(provider)
       .then((result) => {
         const userRef = db.collection('users').doc(result.user.uid);
+
         userRef.get().then((doc) => {
+          const data = doc.data();
           if (!doc.exists) {
             userRef.set({
               followers: 0,
@@ -22,14 +24,17 @@ function SignIn() {
               userName: result.user.photoURL,
             });
           } else if (doc.exists) {
-            userRef.get().then((doc) => {
-              const data = doc.data();
+            userRef.get().then(() => {
               dispatch(
                 updateUser(data)
               )
             }
             );
           }
+
+          // Save user to local storage in computer to use when coming back to 
+          let newUser = data;
+          localStorage.setItem('userMetanoeo', JSON.stringify(newUser));
         })
         history.push("/");
       })

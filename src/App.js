@@ -12,7 +12,10 @@ import SignIn from './Components/SignIn';
 import { updateSignOutUser } from './Features/signInSlice'
 import { auth } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserName } from './Features/signInSlice'
+import { selectUserName, updateUser } from './Features/signInSlice';
+import SearchBar from './Components/SearchBar';
+import SearchResults from './Components/SearchResults';
+import { useEffect } from 'react';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,7 +26,8 @@ function App() {
       dispatch(updateSignOutUser());
     }).catch((err) => {
       alert(err.message);
-    })
+    });
+    localStorage.removeItem('userMetanoeo');
   }
 
   return (
@@ -39,7 +43,7 @@ function App() {
                   <Logo src="https://imgur.com/WGXVyuA.png" />
                 </Link>
               </LogoContainer>
-              <SearchBar placeholder="Search..." />
+              <SearchBar />
               <OptionsDiv>
                 <Notifs>
                   Notifs
@@ -70,6 +74,9 @@ function App() {
         </Route>
         <Route path="/user">
           <User />
+        </Route>
+        <Route path="/searchResults">
+          <SearchResults />
         </Route>
       </Switch>
     </Router>
@@ -105,14 +112,14 @@ const Logo = styled.img`
   height: 45px;
 `
 
-const SearchBar = styled.input`
-  width: 90%;
-  height: 45px;
-  border-radius: 30px;
-  padding-left: 10px;
-  font-size: 18px;
-  border: 1.5px solid black;
-`
+// const SearchBar = styled.input`
+//   width: 90%;
+//   height: 45px;
+//   border-radius: 30px;
+//   padding-left: 10px;
+//   font-size: 18px;
+//   border: 1.5px solid black;
+// `
 
 const OptionsDiv = styled.div`
   display: flex;
