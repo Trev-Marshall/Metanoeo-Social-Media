@@ -20,8 +20,8 @@ function SignIn() {
             userRef.set({
               followers: 0,
               following: 0,
-              userPhoto: '',
-              userName: result.user.photoURL,
+              userPhoto: result.user.photoURL,
+              userName: '',
             });
           } else if (doc.exists) {
             userRef.get().then(() => {
