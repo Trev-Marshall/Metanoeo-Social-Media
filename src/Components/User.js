@@ -3,17 +3,22 @@ import styled from 'styled-components'
 import PostBlock from './PostBlock'
 import { selectFollowers, selectFollowing, selectUserName, selectUserPhoto } from '../Features/signInSlice'
 import { useSelector } from 'react-redux'
+import SettingsIcon from '@material-ui/icons/Settings'
+import { useHistory } from 'react-router'
 
 function User() {
   const userPhoto = useSelector(selectUserPhoto);
   const followers = useSelector(selectFollowers);
   const following = useSelector(selectFollowing);
   const userName = useSelector(selectUserName);
+  const history = useHistory();
+
   return (
     <Container>
       <TopContainer>
         <UserPhoto src={userPhoto} />
         <UserName>{userName}</UserName>
+        <SettingsIcon onClick={() => history.push('/settings')} />
       </TopContainer>
       <MidContainer>
         <FollowStats>Followers: {followers} || Following: {following}</FollowStats>

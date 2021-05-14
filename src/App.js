@@ -14,6 +14,7 @@ import { auth } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserName, updateUser } from './Features/signInSlice';
 import SearchBar from './Components/SearchBar';
+import Settings from './Components/Settings';
 import SearchResults from './Components/SearchResults';
 import { useEffect } from 'react';
 
@@ -71,6 +72,9 @@ function App() {
               </Route>
               <Route path="/searchResults">
                 <SearchResults />
+              </Route>
+              <Route path="/settings">
+                <Settings />
               </Route>
               <Route path="/">
                 <HomeContent />
