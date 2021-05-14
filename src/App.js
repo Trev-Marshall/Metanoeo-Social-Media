@@ -63,22 +63,22 @@ function App() {
                 </Dropdown>
               </OptionsDiv>
             </Navigation>
+
+
+            <Switch>
+              <Route path="/user">
+                <User />
+              </Route>
+              <Route path="/searchResults">
+                <SearchResults />
+              </Route>
+              <Route path="/">
+                <HomeContent />
+              </Route>
+            </Switch>
           </Container>
         )
       }
-
-
-      <Switch>
-        <Route exact path="/">
-          <HomeContent />
-        </Route>
-        <Route path="/user">
-          <User />
-        </Route>
-        <Route path="/searchResults">
-          <SearchResults />
-        </Route>
-      </Switch>
     </Router>
   );
 }

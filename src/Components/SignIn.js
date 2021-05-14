@@ -23,7 +23,7 @@ function SignIn() {
               userPhoto: result.user.photoURL,
               userName: '',
             });
-          } else if (doc.exists) {
+          } else if (doc.exists === true) {
             userRef.get().then(() => {
               dispatch(
                 updateUser(data)
