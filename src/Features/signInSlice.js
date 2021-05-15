@@ -7,6 +7,7 @@ const signInSlice = createSlice({
     following: null,
     userPhoto: '',
     userName: '',
+    userBio: '',
   },
   reducers: {
     updateUser: (state, action) => {
@@ -14,12 +15,14 @@ const signInSlice = createSlice({
       state.following = action.payload.following;
       state.userPhoto = action.payload.userPhoto;
       state.userName = action.payload.userName;
+      state.userBio = action.payload.userBio;
     },
     updateSignOutUser: state => {
-      state.followers = null;
-      state.following = null;
+      state.followers = 0;
+      state.following = 0;
       state.userPhoto = '';
       state.userName = '';
+      state.userBio = '';
     }
   }
 });
@@ -30,5 +33,6 @@ export const selectFollowers = (state) => state.user.followers;
 export const selectFollowing = (state) => state.user.following;
 export const selectUserPhoto = (state) => state.user.userPhoto;
 export const selectUserName = (state) => state.user.userName;
+export const selectUserBio = (state) => state.user.userBio;
 
 export default signInSlice.reducer;

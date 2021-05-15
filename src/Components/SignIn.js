@@ -21,16 +21,16 @@ function SignIn() {
               followers: 0,
               following: 0,
               userPhoto: result.user.photoURL,
-              userName: '',
+              userName: result.user.displayName,
+              userBio: '',
             });
-          } else if (doc.exists === true) {
-            userRef.get().then(() => {
-              dispatch(
-                updateUser(data)
-              )
-            }
-            );
           }
+          userRef.get().then(() => {
+            dispatch(
+              updateUser(data)
+            )
+          }
+          );
 
           // Save user to local storage in computer to use when coming back to 
           let newUser = data;

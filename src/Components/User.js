@@ -1,16 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import PostBlock from './PostBlock'
-import { selectFollowers, selectFollowing, selectUserName, selectUserPhoto } from '../Features/signInSlice'
+import { selectFollowers, selectFollowing, selectUserBio, selectUserName, selectUserPhoto, updateUser } from '../Features/signInSlice'
 import { useSelector } from 'react-redux'
 import SettingsIcon from '@material-ui/icons/Settings'
 import { useHistory } from 'react-router'
 
 function User() {
-  const userPhoto = useSelector(selectUserPhoto);
-  const followers = useSelector(selectFollowers);
-  const following = useSelector(selectFollowing);
-  const userName = useSelector(selectUserName);
+  let userPhoto = useSelector(selectUserPhoto);
+  let followers = useSelector(selectFollowers);
+  let following = useSelector(selectFollowing);
+  let userName = useSelector(selectUserName);
+  let bio = useSelector(selectUserBio);
+
   const history = useHistory();
 
   return (
@@ -23,7 +25,7 @@ function User() {
       <MidContainer>
         <FollowStats>Followers: {followers} || Following: {following}</FollowStats>
       </MidContainer>
-      <Bio>I make web applications that are better than everyone else's</Bio>
+      <Bio>{bio}</Bio>
       <PostContainer>
         <PostBlock />
         <PostBlock />
@@ -47,6 +49,7 @@ const Container = styled.div`
 const UserPhoto = styled.img`
   height: 100px;
   border-radius: 50%;
+  width: 100px;
 `
 
 const UserName = styled.h1`
