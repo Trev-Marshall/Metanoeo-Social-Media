@@ -67,7 +67,7 @@ function Settings() {
         userName: user.nameValue,
         userBio: user.bioValue,
       });
-      alert("Refresh page to see changes");
+      alert("Refresh page to see changes.");
     }
   }
 

@@ -16,9 +16,11 @@ import { selectUserName } from './Features/signInSlice';
 import SearchBar from './Components/SearchBar';
 import Settings from './Components/Settings';
 import SearchResults from './Components/SearchResults';
+import { useState } from 'react';
 
 
 function App() {
+  const [postModal, setPostModal] = useState(false);
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
 
@@ -46,7 +48,7 @@ function App() {
               </LogoContainer>
               <SearchBar />
               <OptionsDiv>
-                <NewPost>
+                <NewPost onClick={() => setPostModal(true)}>
                   New Post
                 </NewPost>
                 <Notifs>
@@ -80,7 +82,7 @@ function App() {
                 <Settings />
               </Route>
               <Route path="/">
-                <HomeContent />
+                <HomeContent postModal={postModal} setPostModal={setPostModal} />
               </Route>
             </Switch>
           </Container>
