@@ -44,11 +44,15 @@ function Settings() {
   const onSubmit = (event) => {
     const authUser = auth.currentUser;
 
+    var valid = /^(ftp|http|https):\/\/imgur.com+/.test(user.photoValue);
+
     event.preventDefault();
     const userRef = db.collection('users').doc(authUser.uid);
     if (selectBio === user.bioValue && selectPhoto === user.photoValue && selectName === user.nameValue) {
       alert("Change at least one thing before submitting");
       return;
+    } else if (valid === false) {
+      alert("Photo url is not in the correct format: https://imgur.com<rest of photo link goes here>")
     } else {
       userRef.set({
         followers: followers,
@@ -65,6 +69,7 @@ function Settings() {
         userName: user.nameValue,
         userBio: user.bioValue,
       });
+      alert("Refresh page to see changes");
     }
   }
 
