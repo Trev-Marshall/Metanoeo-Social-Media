@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux'
 import { selectUserName, selectUserPhoto, selectUserBio, selectFollowers, selectFollowing } from '../Features/signInSlice'
 import { db, auth } from '../firebase'
 import { useDispatch } from 'react-redux';
-import { updateUser } from '../Features/signInSlice'
-import { useEffect } from 'react'
 
 function Settings() {
   const selectName = useSelector(selectUserName);
@@ -44,7 +42,7 @@ function Settings() {
   const onSubmit = (event) => {
     const authUser = auth.currentUser;
 
-    var valid = /^(ftp|http|https):\/\/imgur.com+/.test(user.photoValue);
+    var valid = /^(ftp|http|https):\/\/imgur.com/.test(user.photoValue);
 
     event.preventDefault();
     const userRef = db.collection('users').doc(authUser.uid);

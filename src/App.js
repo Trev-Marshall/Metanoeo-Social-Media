@@ -46,9 +46,12 @@ function App() {
               </LogoContainer>
               <SearchBar />
               <OptionsDiv>
+                <NewPost>
+                  New Post
+                </NewPost>
                 <Notifs>
                   Notifs
-            </Notifs>
+                </Notifs>
                 <Dropdown>
                   <DropdownSel>
                     <UserBtn><UserPhoto src="https://imgur.com/oWr9MTw.png" /></UserBtn>
@@ -120,10 +123,11 @@ const OptionsDiv = styled.div`
   display: flex;
   padding: 5px 15px;
   align-items: center;
+  justify-content: center;
 `
 
 const Notifs = styled.p`
-  margin-right: 10px;
+  margin: auto 10px auto 10px;
   font-size: 18px;
 `
 
@@ -191,4 +195,17 @@ const UserBtn = styled.button`
   &:focus + ${Li} {
     pointer-events: all;
   }
+`
+
+const NewPost = styled.button`
+  background: rgb(255,0,213);
+  background: linear-gradient(141deg, rgba(255,0,213,1) 0%, rgba(180,120,221,1) 48%, rgba(33,123,203,1) 100%);
+  border-radius: 10px;
+  color: white;
+  font-weight: 300;
+  font-size: .9em;
+  border: none;
+  padding: 4px 7px;
+  height: 40px;
+  width: 100px;
 `
