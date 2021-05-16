@@ -8,6 +8,7 @@ const signInSlice = createSlice({
     userPhoto: '',
     userName: '',
     userBio: '',
+    posts: [],
   },
   reducers: {
     updateUser: (state, action) => {
@@ -16,6 +17,7 @@ const signInSlice = createSlice({
       state.userPhoto = action.payload.userPhoto;
       state.userName = action.payload.userName;
       state.userBio = action.payload.userBio;
+      state.posts = action.payload.posts;
     },
     updateSignOutUser: state => {
       state.followers = 0;
@@ -23,6 +25,7 @@ const signInSlice = createSlice({
       state.userPhoto = '';
       state.userName = '';
       state.userBio = '';
+      state.posts = [];
     }
   }
 });
@@ -34,5 +37,6 @@ export const selectFollowing = (state) => state.user.following;
 export const selectUserPhoto = (state) => state.user.userPhoto;
 export const selectUserName = (state) => state.user.userName;
 export const selectUserBio = (state) => state.user.userBio;
+export const selectUserPosts = (state) => state.user.posts;
 
 export default signInSlice.reducer;

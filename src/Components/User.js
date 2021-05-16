@@ -20,7 +20,10 @@ function User() {
       <TopContainer>
         <UserPhoto src={userPhoto} />
         <UserName>{userName}</UserName>
-        <SettingsIcon onClick={() => history.push('/settings')} />
+        <SettingsIcon
+          onClick={() => history.push('/settings')}
+          style={{ cursor: 'pointer' }}
+        />
       </TopContainer>
       <MidContainer>
         <FollowStats>Followers: {followers} || Following: {following}</FollowStats>

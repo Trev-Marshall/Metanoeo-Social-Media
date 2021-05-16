@@ -23,6 +23,7 @@ function SignIn() {
               userPhoto: result.user.photoURL,
               userName: result.user.displayName,
               userBio: '',
+              posts: [],
             });
           }
           userRef.get().then(() => {
