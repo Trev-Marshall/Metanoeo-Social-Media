@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function Post() {
+function Post({ item }) {
   return (
     <Container>
       <TopDiv>
@@ -11,7 +11,7 @@ function Post() {
         </UserInfo>
         <OptionThingy>&gt;</OptionThingy>
       </TopDiv>
-      <PostImg src="https://imgur.com/k6gQm6y.png" />
+      <PostImg src={item.photo} />
       <BottomDiv>
         <Like>Like</Like>
         <Comment>Comment</Comment>
@@ -19,7 +19,7 @@ function Post() {
       </BottomDiv>
       <Description>
         <DescUser>Not Your Dev</DescUser>
-        This is the description for the awesome picture above.
+        {item.caption}
       </Description>
     </Container>
   )

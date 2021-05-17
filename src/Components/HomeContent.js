@@ -5,8 +5,13 @@ import Updates from './Updates'
 import NewResources from './NewResources'
 import admin from 'firebase'
 import { db, auth } from '../firebase'
+import { useSelector } from 'react-redux'
+import { selectUserPosts } from '../Features/signInSlice'
 
 function HomeContent({ postModal, setPostModal }) {
+  const posts = useSelector(selectUserPosts);
+  console.log(posts);
+
   const [formState, setForm] = useState({
     caption: '',
     photo: ''
@@ -51,8 +56,16 @@ function HomeContent({ postModal, setPostModal }) {
   return (
     <Container>
       <PostSection>
-        <Post />
-        <Post />
+        {
+          posts.map((item, i) =>
+          (
+            <Post
+              key={i}
+              item={item}
+            />
+          )
+          )
+        }
       </PostSection>
       <SideBar>
         <SideBarDiv>
