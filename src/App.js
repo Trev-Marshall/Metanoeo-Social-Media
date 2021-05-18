@@ -17,10 +17,12 @@ import SearchBar from './Components/SearchBar';
 import Settings from './Components/Settings';
 import SearchResults from './Components/SearchResults';
 import { useState } from 'react';
+import NotifDropdown from './Components/NotifDropdown'
 
 
 function App() {
   const [postModal, setPostModal] = useState(false);
+  const [notifModal, setNotifModal] = useState(false);
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
 
@@ -52,7 +54,8 @@ function App() {
                   New Post
                 </NewPost>
                 <Notifs>
-                  Notifs
+                  <p onClick={() => setNotifModal(true)} className="notif">Notifs</p>
+                  <NotifDropdown notifModal={notifModal} setNotifModal={setNotifModal} />
                 </Notifs>
                 <Dropdown>
                   <DropdownSel>
@@ -131,6 +134,7 @@ const OptionsDiv = styled.div`
 const Notifs = styled.p`
   margin: auto 10px auto 10px;
   font-size: 18px;
+  position: relative;
 `
 
 const UserPhoto = styled.img`
