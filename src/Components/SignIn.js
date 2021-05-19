@@ -5,7 +5,7 @@ import { updateUser } from '../Features/signInSlice';
 import { db, provider, auth } from '../firebase'
 import { useHistory } from 'react-router-dom'
 
-function SignIn() {
+function SignIn({ setDefaultPosts }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -13,6 +13,12 @@ function SignIn() {
     auth.signInWithPopup(provider)
       .then((result) => {
         const userRef = db.collection('users').doc(result.user.uid);
+        const postsRef = db.collection('defaultPosts').doc('posts');
+        postsRef.get().then((doc) => {
+          setDefaultPosts(doc.data());
+        }).catch((error) => {
+          console.log(error);
+        })
 
         userRef.get().then((doc) => {
           const data = doc.data();

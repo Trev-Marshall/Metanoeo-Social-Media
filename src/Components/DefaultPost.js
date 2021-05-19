@@ -1,31 +1,31 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function Post({ item }) {
+function DefaultPost({ item }) {
   return (
     <Container>
       <TopDiv>
         <UserInfo>
-          <UserPhoto src="https://imgur.com/oWr9MTw.png" />
-          <UserName>Not Your Dev</UserName>
+          <UserPhoto src={item?.userPhoto} />
+          <UserName>{item?.username}</UserName>
         </UserInfo>
         <OptionThingy>&gt;</OptionThingy>
       </TopDiv>
-      <PostImg src={item.photo} />
+      <PostImg src={item?.postImg} />
       <BottomDiv>
         <Like>Like</Like>
         <Comment>Comment</Comment>
         <Share>Share</Share>
       </BottomDiv>
       <Description>
-        <DescUser>Not Your Dev</DescUser>
-        {item.caption}
+        <DescUser>{item?.username}</DescUser>
+        {item?.description}
       </Description>
     </Container>
   )
 }
 
-export default Post
+export default DefaultPost
 
 const Container = styled.div`
   width: 100%;
@@ -46,6 +46,7 @@ const UserPhoto = styled.img`
   height: 50px;
   border-radius: 50%;
   width: 50px;
+  object-fit: cover;
 `
 
 const UserName = styled.p`

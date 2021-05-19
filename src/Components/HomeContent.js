@@ -7,10 +7,10 @@ import admin from 'firebase'
 import { db, auth } from '../firebase'
 import { useSelector } from 'react-redux'
 import { selectUserPosts } from '../Features/signInSlice'
+import DefaultPost from './DefaultPost'
 
-function HomeContent({ postModal, setPostModal }) {
+function HomeContent({ postModal, setPostModal, defaultPosts }) {
   const posts = useSelector(selectUserPosts);
-  console.log(posts);
 
   const [formState, setForm] = useState({
     caption: '',
@@ -60,6 +60,16 @@ function HomeContent({ postModal, setPostModal }) {
           posts.map((item, i) =>
           (
             <Post
+              key={i}
+              item={item}
+            />
+          )
+          )
+        }
+        {
+          defaultPosts.postsArray.map((item, i) =>
+          (
+            <DefaultPost
               key={i}
               item={item}
             />

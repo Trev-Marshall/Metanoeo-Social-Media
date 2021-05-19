@@ -21,6 +21,8 @@ import NotifDropdown from './Components/NotifDropdown'
 
 
 function App() {
+  const [defaultPosts, setDefaultPosts] = useState({});
+  console.log(defaultPosts);
   const [postModal, setPostModal] = useState(false);
   const [notifModal, setNotifModal] = useState(false);
   const dispatch = useDispatch();
@@ -39,7 +41,7 @@ function App() {
     <Router>
       {
         !userName ? (
-          <SignIn />
+          <SignIn setDefaultPosts={setDefaultPosts} />
         ) : (
           <Container>
             <Navigation>
@@ -85,7 +87,7 @@ function App() {
                 <Settings />
               </Route>
               <Route path="/">
-                <HomeContent postModal={postModal} setPostModal={setPostModal} />
+                <HomeContent postModal={postModal} setPostModal={setPostModal} defaultPosts={defaultPosts} />
               </Route>
             </Switch>
           </Container>
@@ -131,7 +133,7 @@ const OptionsDiv = styled.div`
   justify-content: center;
 `
 
-const Notifs = styled.p`
+const Notifs = styled.div`
   margin: auto 10px auto 10px;
   font-size: 18px;
   position: relative;
