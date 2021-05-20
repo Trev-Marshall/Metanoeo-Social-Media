@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PostBlock from './PostBlock'
-import { selectFollowers, selectFollowing, selectUserBio, selectUserName, selectUserPhoto, updateUser } from '../Features/signInSlice'
+import { selectFollowers, selectFollowing, selectUserBio, selectUserName, selectUserPhoto, updateUser, selectUserPosts } from '../Features/signInSlice'
 import { useSelector } from 'react-redux'
 import SettingsIcon from '@material-ui/icons/Settings'
 import { useHistory } from 'react-router'
@@ -14,6 +14,7 @@ function User() {
   let bio = useSelector(selectUserBio);
 
   const history = useHistory();
+  const posts = useSelector(selectUserPosts);
 
   return (
     <Container>
@@ -30,12 +31,16 @@ function User() {
       </MidContainer>
       <Bio>{bio}</Bio>
       <PostContainer>
-        <PostBlock />
-        <PostBlock />
-        <PostBlock />
-        <PostBlock />
-        <PostBlock />
-        <PostBlock />
+        {
+          posts.map((item, i) =>
+          (
+            <PostBlock
+              key={i}
+              item={item}
+            />
+          )
+          )
+        }
       </PostContainer>
     </Container>
   )

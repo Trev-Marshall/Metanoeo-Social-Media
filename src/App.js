@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUserName } from './Features/signInSlice';
 import SearchBar from './Components/SearchBar';
 import Settings from './Components/Settings';
-import SearchResults from './Components/SearchResults';
 import { useState } from 'react';
 import NotifDropdown from './Components/NotifDropdown'
 
@@ -50,7 +49,9 @@ function App() {
                   <Logo src="https://imgur.com/WGXVyuA.png" />
                 </Link>
               </LogoContainer>
-              <SearchBar />
+              <SearchDiv>
+                <SearchBar />
+              </SearchDiv>
               <OptionsDiv>
                 <NewPost onClick={() => setPostModal(true)}>
                   New Post
@@ -79,9 +80,6 @@ function App() {
             <Switch>
               <Route path="/user">
                 <User />
-              </Route>
-              <Route path="/searchResults">
-                <SearchResults />
               </Route>
               <Route path="/settings">
                 <Settings />
@@ -216,4 +214,8 @@ const NewPost = styled.button`
   padding: 4px 7px;
   height: 40px;
   width: 100px;
+`
+
+const SearchDiv = styled.div`
+flex: 1;
 `
