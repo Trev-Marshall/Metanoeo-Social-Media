@@ -135,6 +135,7 @@ const Notifs = styled.div`
   margin: auto 10px auto 10px;
   font-size: 18px;
   position: relative;
+  cursor: pointer;
 `
 
 const UserPhoto = styled.img`
