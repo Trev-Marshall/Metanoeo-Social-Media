@@ -112,12 +112,19 @@ const PostSection = styled.div`
   margin: 0 20px 0 150px;
   width: 50%;
   border-radius: 10px;
+  @media (max-width: 800px) {
+    width: 80%;
+    margin: 0 auto 0 auto;
+  }
 `
 
 const SideBar = styled.div`
   margin: 0 10px 0 auto;
   width: 30%;
   padding: 5px;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `
 
 const SideBarDiv = styled.div`

@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 import User from './Components/User';
 import SignIn from './Components/SignIn';
-import { updateSignOutUser } from './Features/signInSlice'
+import { selectUserPhoto, updateSignOutUser } from './Features/signInSlice'
 import { auth } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserName } from './Features/signInSlice';
@@ -26,6 +26,7 @@ function App() {
   const [notifModal, setNotifModal] = useState(false);
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
+  const userPhoto = useSelector(selectUserPhoto);
 
   const signOut = () => {
     auth.signOut().then(() => {
@@ -46,6 +47,7 @@ function App() {
             <Navigation>
               <LogoContainer>
                 <Link to="/">
+                  <RespLogo src="https://imgur.com/o3r5mzT.jpg" />
                   <Logo src="https://imgur.com/WGXVyuA.png" />
                 </Link>
               </LogoContainer>
@@ -62,7 +64,7 @@ function App() {
                 </Notifs>
                 <Dropdown>
                   <DropdownSel>
-                    <UserBtn><UserPhoto src="https://imgur.com/oWr9MTw.png" /></UserBtn>
+                    <UserBtn><UserPhoto src={userPhoto} /></UserBtn>
                     <Ul>
                       <Li>
                         <Link to="/user" style={{ color: "black", textDecoration: "none" }} >Profile</Link>
@@ -118,10 +120,23 @@ const LogoContainer = styled.div`
   height: 45px;
   background-color: black;
   margin: 15px;
+  @media (max-width: 800px) {
+    width: 20%;
+    height: fit-content;
+  }
 `
 
 const Logo = styled.img`
   height: 45px;
+  @media (max-width: 800px) {
+    display: none;
+  }
+`
+const RespLogo = styled.img`
+  height: 45px;
+  @media (min-width: 800px) {
+    display: none;
+  }
 `
 
 const OptionsDiv = styled.div`
@@ -144,9 +159,9 @@ const UserPhoto = styled.img`
 `
 
 const Dropdown = styled.div`
+  display: flex;
   height: 10vh;
   align-items: center;
-  margin-top: 15px;
 `
 
 const Ul = styled.ul`
@@ -171,6 +186,7 @@ const Ul = styled.ul`
 
 const DropdownSel = styled.div`
   position: relative;
+  margin: auto 0;
 `
 
 
@@ -192,6 +208,7 @@ const UserBtn = styled.button`
   border: none;
   cursor: pointer;
   transition: opacity 250ms ease;
+
   &:hover {
     opacity: .75;
   }
