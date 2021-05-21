@@ -11,7 +11,7 @@ function Post({ item }) {
         </UserInfo>
         <OptionThingy>&gt;</OptionThingy>
       </TopDiv>
-      <PostImg src={item.photo} />
+      <PostImg src={item?.photo} />
       <BottomDiv>
         <Like>Like</Like>
         <Comment>Comment</Comment>
@@ -19,7 +19,7 @@ function Post({ item }) {
       </BottomDiv>
       <Description>
         <DescUser>Not Your Dev</DescUser>
-        {item.caption}
+        {item?.caption}
       </Description>
     </Container>
   )

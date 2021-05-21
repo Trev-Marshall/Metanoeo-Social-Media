@@ -56,7 +56,7 @@ function HomeContent({ postModal, setPostModal, defaultPosts }) {
   return (
     <Container>
       <PostSection>
-        {
+        {!posts === [] &&
           posts.map((item, i) =>
           (
             <Post

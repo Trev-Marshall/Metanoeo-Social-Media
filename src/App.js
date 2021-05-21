@@ -22,7 +22,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 
 function App() {
   const [defaultPosts, setDefaultPosts] = useState({});
-  console.log(defaultPosts);
   const [postModal, setPostModal] = useState(false);
   const [notifModal, setNotifModal] = useState(false);
   const dispatch = useDispatch();

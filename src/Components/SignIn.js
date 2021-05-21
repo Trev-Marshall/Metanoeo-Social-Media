@@ -40,7 +40,12 @@ function SignIn({ setDefaultPosts }) {
             )
           } else {
             dispatch(
-              updateUser(doc.data())
+              updateUser({
+                userPhoto: result.user.photoURL,
+                userName: result.user.displayName,
+                userBio: '',
+                posts: [],
+              })
             )
           }
 
