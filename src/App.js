@@ -17,6 +17,7 @@ import SearchBar from './Components/SearchBar';
 import Settings from './Components/Settings';
 import { useState } from 'react';
 import NotifDropdown from './Components/NotifDropdown'
+import NotificationsIcon from '@material-ui/icons/Notifications';
 
 
 function App() {
@@ -55,9 +56,16 @@ function App() {
                 <SearchBar />
               </SearchDiv>
               <OptionsDiv>
+                <NotifsResponsive>
+                  <NotificationsIcon onClick={() => setNotifModal(true)} className="notif">Notifs</NotificationsIcon>
+                  <NotifDropdown notifModal={notifModal} setNotifModal={setNotifModal} />
+                </NotifsResponsive>
                 <NewPost onClick={() => setPostModal(true)}>
                   New Post
                 </NewPost>
+                <NewPostResponsive onClick={() => setPostModal(true)}>
+                  +
+                </NewPostResponsive>
                 <Notifs>
                   <p onClick={() => setNotifModal(true)} className="notif">Notifs</p>
                   <NotifDropdown notifModal={notifModal} setNotifModal={setNotifModal} />
@@ -121,7 +129,6 @@ const LogoContainer = styled.div`
   background-color: black;
   margin: 15px;
   @media (max-width: 800px) {
-    width: 20%;
     height: fit-content;
   }
 `
@@ -133,7 +140,7 @@ const Logo = styled.img`
   }
 `
 const RespLogo = styled.img`
-  height: 45px;
+  height: 100%;
   @media (min-width: 800px) {
     display: none;
   }
@@ -141,7 +148,7 @@ const RespLogo = styled.img`
 
 const OptionsDiv = styled.div`
   display: flex;
-  padding: 5px 15px;
+  padding: 5px 5px 5px 15px;
   align-items: center;
   justify-content: center;
 `
@@ -151,6 +158,9 @@ const Notifs = styled.div`
   font-size: 18px;
   position: relative;
   cursor: pointer;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `
 
 const UserPhoto = styled.img`
@@ -232,8 +242,28 @@ const NewPost = styled.button`
   padding: 4px 7px;
   height: 40px;
   width: 100px;
+  @media (max-width: 800px) {
+    display: none;
+  }
 `
 
 const SearchDiv = styled.div`
 flex: 1;
+`
+
+const NewPostResponsive = styled(NewPost)`
+  width: 40px;
+  border-radius: 50%;
+  display: none;
+  @media (max-width: 800px) {
+    display: block;
+  }
+`
+
+const NotifsResponsive = styled.div`
+  position: relative;
+  display: none;
+  @media (max-width: 800px) {
+    display: block;
+  }
 `

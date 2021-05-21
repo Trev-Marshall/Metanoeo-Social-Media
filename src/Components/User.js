@@ -28,8 +28,8 @@ function User() {
       </TopContainer>
       <MidContainer>
         <FollowStats>Followers: {followers} || Following: {following}</FollowStats>
+        <Bio>{bio}</Bio>
       </MidContainer>
-      <Bio>{bio}</Bio>
       <PostContainer>
         {
           posts.map((item, i) =>
@@ -52,6 +52,10 @@ const Container = styled.div`
   padding-top: 80px; 
   width: 60%;
   margin: 0 auto;
+  background-color: #f0f4f5;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `
 
 const UserPhoto = styled.img`
@@ -86,14 +90,22 @@ const PostContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 200px;
   border-top: 1px solid gray;
+  background-color: white;
+  @media (max-width: 800px) {
+    grid-template-rows: 130px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 `
 
 const TopContainer = styled.div`
   display: flex;
+  margin: 0px 10px;
 `
 
 const MidContainer = styled.div`
+  margin: 0 -30px;
   display: flex;
+  flex-direction: column;
   width: 100%;
   text-align: right;
 `

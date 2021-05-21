@@ -16,7 +16,7 @@ const Container = styled.div`
 `
 
 const BlockImg = styled.img`
-  height: 200px;
+  height: 100%;
   width: 100%;
   object-fit: cover;
 `

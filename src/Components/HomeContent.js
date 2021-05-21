@@ -144,7 +144,10 @@ const NewPostModal = styled.div`
   background-color: #fff0f1;
   box-shadow: 5px 5px 5px grey;
   border-radius: 15px;
-
+  @media (max-width: 800px) {
+    width: 80%;
+    left: 40px;
+  }
 `
 
 const Xbtn = styled.p`
