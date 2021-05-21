@@ -38,13 +38,11 @@ function SignIn({ setDefaultPosts }) {
                 posts: [],
               })
             )
-          }
-          userRef.get().then(() => {
+          } else {
             dispatch(
-              updateUser(data)
+              updateUser(doc.data())
             )
           }
-          );
 
           // Save user to local storage in computer to use when coming back to 
           let newUser = data;

@@ -10,10 +10,10 @@ const signInSlice = createSlice({
   },
   reducers: {
     updateUser: (state, action) => {
-      state.userPhoto = action.payload.userPhoto;
-      state.userName = action.payload.userName;
-      state.userBio = action.payload.userBio;
-      state.posts = action.payload.posts;
+      state.userPhoto = action.payload;
+      state.userName = action.payload;
+      state.userBio = action.payload;
+      state.posts = action.payload;
     },
     updateSignOutUser: state => {
       state.userPhoto = '';
