@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import PostBlock from './PostBlock'
-import { selectFollowers, selectFollowing, selectUserBio, selectUserName, selectUserPhoto, selectUserPosts } from '../Features/signInSlice'
+import { selectUserBio, selectUserName, selectUserPhoto, selectUserPosts } from '../Features/signInSlice'
 import { useSelector } from 'react-redux'
 import SettingsIcon from '@material-ui/icons/Settings'
 import { useHistory } from 'react-router'

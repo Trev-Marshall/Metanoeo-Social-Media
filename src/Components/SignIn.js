@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { updateUser } from '../Features/signInSlice';
@@ -50,8 +50,12 @@ function SignIn({ setDefaultPosts }) {
           }
 
           // Save user to local storage in computer to use when coming back to 
-          let newUser = data;
-          localStorage.setItem('userMetanoeo', JSON.stringify(newUser));
+          localStorage.setItem('userMetanoeo', JSON.stringify({
+            userPhoto: result.user.photoURL,
+            userName: result.user.displayName,
+            userBio: '',
+            posts: data.posts,
+          }));
         })
         history.push("/");
       })

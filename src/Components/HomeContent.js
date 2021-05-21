@@ -11,7 +11,6 @@ import DefaultPost from './DefaultPost'
 
 function HomeContent({ postModal, setPostModal, defaultPosts }) {
   const posts = useSelector(selectUserPosts);
-  console.log(posts);
 
   const [formState, setForm] = useState({
     caption: '',
@@ -32,9 +31,8 @@ function HomeContent({ postModal, setPostModal, defaultPosts }) {
     });
   };
 
-  const createPost = (e) => {
+  const createPost = () => {
     const authUser = auth.currentUser;
-    e.preventDefault();
 
     var valid = /^(ftp|http|https):\/\/imgur.com/.test(formState.photo);
     const userRef = db.collection('users').doc(authUser.uid);
@@ -53,7 +51,7 @@ function HomeContent({ postModal, setPostModal, defaultPosts }) {
     }
   }
 
-
+  console.log(posts)
   return (
     <Container>
       <PostSection>
@@ -67,7 +65,7 @@ function HomeContent({ postModal, setPostModal, defaultPosts }) {
           )
           )
         }
-        {
+        {defaultPosts &&
           defaultPosts.postsArray.map((item, i) =>
           (
             <DefaultPost

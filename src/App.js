@@ -5,17 +5,18 @@ import {
   BrowserRouter as Router,
   Link,
   Switch,
-  Route
+  Route,
+  useHistory
 } from 'react-router-dom';
+import db from './firebase'
 import User from './Components/User';
 import SignIn from './Components/SignIn';
-import { selectUserPhoto, updateSignOutUser } from './Features/signInSlice'
+import { selectUserPhoto, updateSignOutUser, updateUser } from './Features/signInSlice'
 import { auth } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserName } from './Features/signInSlice';
 import SearchBar from './Components/SearchBar';
 import Settings from './Components/Settings';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NotifDropdown from './Components/NotifDropdown'
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
@@ -25,7 +26,6 @@ function App() {
   const [postModal, setPostModal] = useState(false);
   const [notifModal, setNotifModal] = useState(false);
   const dispatch = useDispatch();
-  const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
 
   const signOut = () => {
@@ -37,10 +37,28 @@ function App() {
     localStorage.removeItem('userMetanoeo');
   }
 
+  console.log(JSON.parse(localStorage.getItem('userMetanoeo')));
+  useEffect(() => {
+    const postsRef = db.collection('defaultPosts').doc('posts');
+    if (localStorage.getItem('userMetanoeo')) {
+      postsRef.get().then((doc) => {
+        console.log(doc.data());
+        setDefaultPosts(doc.data());
+        dispatch(
+          updateUser(JSON.parse(localStorage.getItem('userMetanoeo')))
+        )
+      }).catch((error) => {
+        console.log(error);
+      })
+    } else {
+      return;
+    }
+  }, [dispatch]);
+
   return (
     <Router>
       {
-        !userName ? (
+        !userPhoto ? (
           <SignIn setDefaultPosts={setDefaultPosts} />
         ) : (
           <Container>
