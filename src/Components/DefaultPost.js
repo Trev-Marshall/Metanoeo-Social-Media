@@ -84,11 +84,11 @@ const Description = styled.p`
   padding-bottom: 25px;
   border-bottom: 1px solid gray;
   margin: 0;
-  opacity: .6;
 `
 
 const DescUser = styled.span`
   font-weight: bold;
   font-size: 1.05em;
   padding: 0 9px 0 10px;
+  color: black;
 `

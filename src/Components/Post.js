@@ -1,13 +1,17 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+import { selectUserName } from '../Features/signInSlice'
 
 function Post({ item }) {
+  const username = useSelector(selectUserName);
+
   return (
     <Container>
       <TopDiv>
         <UserInfo>
           <UserPhoto src="https://imgur.com/oWr9MTw.png" />
-          <UserName>Not Your Dev</UserName>
+          <UserName>{username}</UserName>
         </UserInfo>
         <OptionThingy>&gt;</OptionThingy>
       </TopDiv>
@@ -18,7 +22,7 @@ function Post({ item }) {
         <Share>Share</Share>
       </BottomDiv>
       <Description>
-        <DescUser>Not Your Dev</DescUser>
+        <DescUser>{username}</DescUser>
         {item?.caption}
       </Description>
     </Container>
@@ -83,11 +87,11 @@ const Description = styled.p`
   padding-bottom: 25px;
   border-bottom: 1px solid gray;
   margin: 0;
-  opacity: .6;
 `
 
 const DescUser = styled.span`
   font-weight: bold;
   font-size: 1.05em;
   padding: 0 9px 0 10px;
+  color: black;
 `

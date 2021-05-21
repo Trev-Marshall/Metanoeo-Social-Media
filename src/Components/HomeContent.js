@@ -11,6 +11,7 @@ import DefaultPost from './DefaultPost'
 
 function HomeContent({ postModal, setPostModal, defaultPosts }) {
   const posts = useSelector(selectUserPosts);
+  console.log(posts);
 
   const [formState, setForm] = useState({
     caption: '',
@@ -56,7 +57,7 @@ function HomeContent({ postModal, setPostModal, defaultPosts }) {
   return (
     <Container>
       <PostSection>
-        {!posts === [] &&
+        {posts &&
           posts.map((item, i) =>
           (
             <Post

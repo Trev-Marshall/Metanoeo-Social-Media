@@ -14,7 +14,6 @@ function SignIn({ setDefaultPosts }) {
       .then((result) => {
         const userRef = db.collection('users').doc(result.user.uid);
         const postsRef = db.collection('defaultPosts').doc('posts');
-
         postsRef.get().then((doc) => {
           setDefaultPosts(doc.data());
         }).catch((error) => {
@@ -23,6 +22,7 @@ function SignIn({ setDefaultPosts }) {
 
         userRef.get().then((doc) => {
           const data = doc.data();
+          console.log(data);
           if (!doc.exists) {
             userRef.set({
               userPhoto: result.user.photoURL,
@@ -44,7 +44,7 @@ function SignIn({ setDefaultPosts }) {
                 userPhoto: result.user.photoURL,
                 userName: result.user.displayName,
                 userBio: '',
-                posts: [],
+                posts: data.posts,
               })
             )
           }
