@@ -1,15 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import PostBlock from './PostBlock'
-import { selectFollowers, selectFollowing, selectUserBio, selectUserName, selectUserPhoto, updateUser, selectUserPosts } from '../Features/signInSlice'
+import { selectFollowers, selectFollowing, selectUserBio, selectUserName, selectUserPhoto, selectUserPosts } from '../Features/signInSlice'
 import { useSelector } from 'react-redux'
 import SettingsIcon from '@material-ui/icons/Settings'
 import { useHistory } from 'react-router'
 
 function User() {
   let userPhoto = useSelector(selectUserPhoto);
-  let followers = useSelector(selectFollowers);
-  let following = useSelector(selectFollowing);
   let userName = useSelector(selectUserName);
   let bio = useSelector(selectUserBio);
 
@@ -27,7 +25,7 @@ function User() {
         />
       </TopContainer>
       <MidContainer>
-        <FollowStats>Followers: {followers} || Following: {following}</FollowStats>
+        <FollowStats>Followers: 0 || Following: 0</FollowStats>
         <Bio>{bio}</Bio>
       </MidContainer>
       <PostContainer>

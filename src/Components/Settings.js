@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { selectUserName, selectUserPhoto, selectUserBio, selectFollowers, selectFollowing } from '../Features/signInSlice'
+import { selectUserName, selectUserPhoto, selectUserBio } from '../Features/signInSlice'
 import { db, auth } from '../firebase'
 import { useDispatch } from 'react-redux';
 
@@ -9,8 +9,6 @@ function Settings() {
   const selectName = useSelector(selectUserName);
   const selectPhoto = useSelector(selectUserPhoto);
   const selectBio = useSelector(selectUserBio);
-  const followers = useSelector(selectFollowers);
-  const following = useSelector(selectFollowing);
 
   const dispatch = useDispatch();
 
@@ -53,16 +51,12 @@ function Settings() {
       alert("Photo url is not in the correct format: https://imgur.com<rest of photo link goes here>")
     } else {
       userRef.set({
-        followers: followers,
-        following: following,
         userPhoto: user.photoValue,
         userName: user.nameValue,
         userBio: user.bioValue,
       });
       dispatch({
         type: "updateUser",
-        followers: followers,
-        following: following,
         userPhoto: user.photoValue,
         userName: user.nameValue,
         userBio: user.bioValue,

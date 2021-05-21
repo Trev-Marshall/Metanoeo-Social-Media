@@ -14,6 +14,7 @@ function SignIn({ setDefaultPosts }) {
       .then((result) => {
         const userRef = db.collection('users').doc(result.user.uid);
         const postsRef = db.collection('defaultPosts').doc('posts');
+
         postsRef.get().then((doc) => {
           setDefaultPosts(doc.data());
         }).catch((error) => {
@@ -24,13 +25,19 @@ function SignIn({ setDefaultPosts }) {
           const data = doc.data();
           if (!doc.exists) {
             userRef.set({
-              followers: 0,
-              following: 0,
               userPhoto: result.user.photoURL,
               userName: result.user.displayName,
               userBio: '',
               posts: [],
             });
+            dispatch(
+              updateUser({
+                userPhoto: result.user.photoURL,
+                userName: result.user.displayName,
+                userBio: '',
+                posts: [],
+              })
+            )
           }
           userRef.get().then(() => {
             dispatch(
