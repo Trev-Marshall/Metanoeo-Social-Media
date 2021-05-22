@@ -22,7 +22,6 @@ function SignIn({ setDefaultPosts }) {
 
         userRef.get().then((doc) => {
           const data = doc.data();
-          console.log(data);
           if (!doc.exists) {
             userRef.set({
               userPhoto: result.user.photoURL,

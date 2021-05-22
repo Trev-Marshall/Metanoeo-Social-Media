@@ -6,7 +6,6 @@ import {
   Link,
   Switch,
   Route,
-  useHistory
 } from 'react-router-dom';
 import db from './firebase'
 import User from './Components/User';
@@ -43,7 +42,6 @@ function App() {
     const postsRef = db.collection('defaultPosts').doc('posts');
     if (localStorage.getItem('userMetanoeo')) {
       postsRef.get().then((doc) => {
-        console.log(doc.data());
         setDefaultPosts(doc.data());
         dispatch(
           updateUser(JSON.parse(localStorage.getItem('userMetanoeo')))

@@ -46,13 +46,11 @@ function HomeContent({ postModal, setPostModal, defaultPosts }) {
       alert("Make sure your url for photo is in the format: https://imgur.com/<rest of link goes here>.jpg");
     } else {
       let localUser = JSON.parse(localStorage.getItem('userMetanoeo'));
-      console.log(localUser);
       setForm({
         caption: '',
         photo: ''
       })
       localUser.posts.push(formState);
-      console.log(localUser);
       localStorage.setItem('userMetanoeo', JSON.stringify({
         userPhoto: photo,
         userName: name,
