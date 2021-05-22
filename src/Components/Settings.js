@@ -83,7 +83,7 @@ function Settings() {
       <Form>
         <Label>Change name:</Label>
         <Input type='text' value={user.nameValue} onChange={changeName}></Input>
-        <Label>Change picture:</Label>
+        <Label>Change picture (Format: https://imgur.com/~insert-your-link~.jpg):</Label>
         <Input type='text' value={user.photoValue} onChange={changePicture}></Input>
         <Label>Change Bio:</Label>
         <Input type='text' value={user.bioValue} onChange={changeBio}></Input>
