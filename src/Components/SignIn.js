@@ -38,24 +38,29 @@ function SignIn({ setDefaultPosts }) {
                 posts: [],
               })
             )
+            localStorage.setItem('userMetanoeo', JSON.stringify({
+              userPhoto: result.user.photoURL,
+              userName: result.user.displayName,
+              userBio: '',
+              posts: [],
+            }));
           } else {
             dispatch(
               updateUser({
                 userPhoto: result.user.photoURL,
                 userName: result.user.displayName,
-                userBio: '',
+                userBio: data.bio,
                 posts: data.posts,
               })
             )
+            localStorage.setItem('userMetanoeo', JSON.stringify({
+              userPhoto: result.user.photoURL,
+              userName: result.user.displayName,
+              userBio: '',
+              posts: data.posts,
+            }));
           }
 
-          // Save user to local storage in computer to use when coming back to 
-          localStorage.setItem('userMetanoeo', JSON.stringify({
-            userPhoto: result.user.photoURL,
-            userName: result.user.displayName,
-            userBio: '',
-            posts: data.posts,
-          }));
         })
         history.push("/");
       })

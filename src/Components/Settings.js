@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { selectUserName, selectUserPhoto, selectUserBio } from '../Features/signInSlice'
+import { selectUserName, selectUserPhoto, selectUserBio, selectUserPosts } from '../Features/signInSlice'
+import { useHistory } from 'react-router-dom'
 import { db, auth } from '../firebase'
 import { useDispatch } from 'react-redux';
 
@@ -9,6 +10,8 @@ function Settings() {
   const selectName = useSelector(selectUserName);
   const selectPhoto = useSelector(selectUserPhoto);
   const selectBio = useSelector(selectUserBio);
+  const posts = useSelector(selectUserPosts);
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -54,14 +57,24 @@ function Settings() {
         userPhoto: user.photoValue,
         userName: user.nameValue,
         userBio: user.bioValue,
+        posts: posts,
+      }).then(() => {
+        dispatch({
+          type: "updateUser",
+          userPhoto: user.photoValue,
+          userName: user.nameValue,
+          userBio: user.bioValue,
+        });
+        localStorage.setItem('userMetanoeo', JSON.stringify({
+          userPhoto: user.photoValue,
+          userName: user.nameValue,
+          userBio: user.bioValue,
+          posts: posts,
+        }));
+        history.push('/user');
+        window.location.reload();
+
       });
-      dispatch({
-        type: "updateUser",
-        userPhoto: user.photoValue,
-        userName: user.nameValue,
-        userBio: user.bioValue,
-      });
-      alert("Refresh page to see changes.");
     }
   }
 

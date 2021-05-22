@@ -29,7 +29,7 @@ function User() {
         <Bio>{bio}</Bio>
       </MidContainer>
       <PostContainer>
-        {
+        {posts &&
           posts.map((item, i) =>
           (
             <PostBlock

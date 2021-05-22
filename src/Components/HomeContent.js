@@ -6,11 +6,14 @@ import NewResources from './NewResources'
 import admin from 'firebase'
 import { db, auth } from '../firebase'
 import { useSelector } from 'react-redux'
-import { selectUserPosts } from '../Features/signInSlice'
+import { selectUserBio, selectUserName, selectUserPhoto, selectUserPosts } from '../Features/signInSlice'
 import DefaultPost from './DefaultPost'
 
 function HomeContent({ postModal, setPostModal, defaultPosts }) {
   const posts = useSelector(selectUserPosts);
+  const name = useSelector(selectUserName);
+  const bio = useSelector(selectUserBio);
+  const photo = useSelector(selectUserPhoto);
 
   const [formState, setForm] = useState({
     caption: '',
@@ -31,9 +34,10 @@ function HomeContent({ postModal, setPostModal, defaultPosts }) {
     });
   };
 
-  const createPost = () => {
-    const authUser = auth.currentUser;
 
+  const createPost = (e) => {
+    const authUser = auth.currentUser;
+    e.preventDefault();
     var valid = /^(ftp|http|https):\/\/imgur.com/.test(formState.photo);
     const userRef = db.collection('users').doc(authUser.uid);
     if (formState.caption === '' || formState.photo === '') {
@@ -41,12 +45,26 @@ function HomeContent({ postModal, setPostModal, defaultPosts }) {
     } else if (!valid) {
       alert("Make sure your url for photo is in the format: https://imgur.com/<rest of link goes here>.jpg");
     } else {
-      userRef.update({
-        posts: admin.firestore.FieldValue.arrayUnion(formState)
-      })
+      let localUser = JSON.parse(localStorage.getItem('userMetanoeo'));
+      console.log(localUser);
       setForm({
         caption: '',
         photo: ''
+      })
+      localUser.posts.push(formState);
+      console.log(localUser);
+      localStorage.setItem('userMetanoeo', JSON.stringify({
+        userPhoto: photo,
+        userName: name,
+        userBio: bio,
+        posts: localUser.posts,
+      }));
+      userRef.update({
+        posts: admin.firestore.FieldValue.arrayUnion(formState)
+      }).then(() => {
+        window.location.reload();
+      }).catch((error) => {
+        console.log(error);
       })
     }
   }
@@ -86,7 +104,7 @@ function HomeContent({ postModal, setPostModal, defaultPosts }) {
         <NewPostModal>
           <Xbtn onClick={() => { setPostModal(false) }}>x</Xbtn>
           <Form>
-            <Label>Image (from imgur)</Label>
+            <Label>Image (Format: https://imgur.com/~insert-your-link~.jpg)</Label>
             <Input type='text' value={formState.photo} onChange={photoChange}></Input>
             <Label>Caption</Label>
             <Input type='text' value={formState.caption} onChange={captionChange}></Input>

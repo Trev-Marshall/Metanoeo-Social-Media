@@ -51,10 +51,11 @@ function App() {
         console.log(error);
       })
     } else {
-      return;
+      return
     }
   }, [dispatch]);
 
+  console.log(userPhoto);
   return (
     <Router>
       {
@@ -193,7 +194,7 @@ const Dropdown = styled.div`
 
 const Ul = styled.ul`
   position: absolute;
-  left: -10px;
+  left: -15px;
   margin-top: 10px;
   width: 85px;
   background-color: white;
@@ -235,7 +236,6 @@ const UserBtn = styled.button`
   border: none;
   cursor: pointer;
   transition: opacity 250ms ease;
-
   &:hover {
     opacity: .75;
   }
