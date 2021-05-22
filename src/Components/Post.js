@@ -54,10 +54,13 @@ const UserPhoto = styled.img`
 
 const UserName = styled.p`
   padding-left: 10px;
+  margin-bottom: 0;
+  align-self: center;
 `
 const OptionThingy = styled.p`
   margin: 0 17px 0 0;
   font-size: 20px;
+  cursor: pointer;
 `
 
 const PostImg = styled.img`

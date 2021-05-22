@@ -7,10 +7,22 @@
 	height: 40px;
 	padding-left: 10px;
 }
+.ais-SearchBox-input:focus {
+	outline: none;
+	border: 2px solid rgb(243, 84, 217);
+	border-bottom-left-radius: 40px;
+	border-top-left-radius: 40px;
+}
 .ais-SearchBox-submit {
 	width: 10%;
 	border: none;
 	height: 40px;
+}
+.ais-SearchBox-submit:focus {
+	outline: none;
+	border: 2px solid rgb(243, 84, 217);
+	border-bottom-right-radius: 40px;
+	border-top-right-radius: 40px;
 }
 .ais-SearchBox-form {
 	border-radius: 40px;
