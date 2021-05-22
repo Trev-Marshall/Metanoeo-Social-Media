@@ -192,6 +192,10 @@ const Notifs = styled.div`
   font-size: 18px;
   position: relative;
   cursor: pointer;
+  transition: color 500ms ease;
+  &:hover {
+    color: lightgrey;
+  }
   @media (max-width: 800px) {
     display: none;
   }
@@ -267,6 +271,10 @@ const NewPost = styled.button`
   padding: 4px 7px;
   height: 40px;
   width: 100px;
+  transition: color 500ms ease; 
+  &:hover {
+    color: black;
+  }
   @media (max-width: 800px) {
     display: none;
   }
@@ -288,6 +296,10 @@ const NewPostResponsive = styled(NewPost)`
 const NotifsResponsive = styled.div`
   position: relative;
   display: none;
+  transition: color 500ms ease;
+  &:hover {
+    color: black;
+  }
   @media (max-width: 800px) {
     display: block;
   }
