@@ -194,4 +194,8 @@ const Button = styled.button`
   background: rgb(255,0,213);
   background: linear-gradient(141deg, rgba(255,0,213,1) 0%, rgba(180,120,221,1) 48%, rgba(33,123,203,1) 100%);
   border-radius: 13px;
+  transition: color 250ms ease;
+  &:hover {
+    color: white;
+  }
 `

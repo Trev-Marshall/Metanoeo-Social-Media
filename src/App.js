@@ -93,7 +93,7 @@ function App() {
                 </NewPostResponsive>
 
                 <Notifs>
-                  <p onClick={() => setNotifModal(true)} className="notif">Notifs</p>
+                  <NotifPara onClick={() => setNotifModal(true)} className="notif">Notifs</NotifPara>
                   <NotifDropdown notifModal={notifModal} setNotifModal={setNotifModal} />
                 </Notifs>
 
@@ -192,12 +192,15 @@ const Notifs = styled.div`
   font-size: 18px;
   position: relative;
   cursor: pointer;
-  transition: color 500ms ease;
-  &:hover {
-    color: lightgrey;
-  }
   @media (max-width: 800px) {
     display: none;
+  }
+`
+
+const NotifPara = styled.p`
+  transition: color 300ms ease;
+  &:hover {
+    color: lightgrey;
   }
 `
 
@@ -210,6 +213,7 @@ const Dropdown = styled.div`
   display: flex;
   height: 10vh;
   align-items: center;
+  color: black;
 `
 
 const Ul = styled.ul`
