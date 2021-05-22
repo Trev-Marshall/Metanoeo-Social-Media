@@ -23,6 +23,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 
 function App() {
   const [defaultPosts, setDefaultPosts] = useState({});
+  const [userDropdown, setUserDropdown] = useState(false);
   const [postModal, setPostModal] = useState(false);
   const [notifModal, setNotifModal] = useState(false);
   const dispatch = useDispatch();
@@ -64,44 +65,59 @@ function App() {
         ) : (
           <Container>
             <Navigation>
+
               <LogoContainer>
                 <Link to="/">
                   <RespLogo src="https://imgur.com/o3r5mzT.jpg" />
                   <Logo src="https://imgur.com/WGXVyuA.png" />
                 </Link>
               </LogoContainer>
+
               <SearchDiv>
                 <SearchBar />
               </SearchDiv>
+
               <OptionsDiv>
+
                 <NotifsResponsive>
                   <NotificationsIcon onClick={() => setNotifModal(true)} className="notif">Notifs</NotificationsIcon>
                   <NotifDropdown notifModal={notifModal} setNotifModal={setNotifModal} />
                 </NotifsResponsive>
+
                 <NewPost onClick={() => setPostModal(true)}>
                   New Post
                 </NewPost>
+
                 <NewPostResponsive onClick={() => setPostModal(true)}>
                   +
                 </NewPostResponsive>
+
                 <Notifs>
                   <p onClick={() => setNotifModal(true)} className="notif">Notifs</p>
                   <NotifDropdown notifModal={notifModal} setNotifModal={setNotifModal} />
                 </Notifs>
+
                 <Dropdown>
                   <DropdownSel>
-                    <UserBtn><UserPhoto src={userPhoto} /></UserBtn>
-                    <Ul>
-                      <Li>
-                        <Link to="/user" style={{ color: "black", textDecoration: "none" }} >Profile</Link>
-                      </Li>
-                      <Li>
-                        <Link to="/signin" onClick={signOut} style={{ color: "black", textDecoration: "none" }} >LogOut</Link>
-                      </Li>
-                    </Ul>
+                    <UserBtn onClick={() => setUserDropdown(!userDropdown)}>
+                      <UserPhoto src={userPhoto} />
+                    </UserBtn>
+                    {userDropdown &&
+                      <Ul>
+                        <Li>
+                          <Link to="/user" style={{ color: "black", textDecoration: "none" }} >Profile</Link>
+                        </Li>
+                        <Li>
+                          <Link to="/signin" onClick={signOut} style={{ color: "black", textDecoration: "none" }} >LogOut</Link>
+                        </Li>
+                      </Ul>
+                    }
+
                   </DropdownSel>
                 </Dropdown>
+
               </OptionsDiv>
+
             </Navigation>
 
 
@@ -208,7 +224,6 @@ const Ul = styled.ul`
   list-style: none;
   padding-left: 0;
   overflow: hidden;
-  opacity: 0;
   transition: all 0.4s ease;
 `
 
@@ -238,13 +253,6 @@ const UserBtn = styled.button`
   transition: opacity 250ms ease;
   &:hover {
     opacity: .75;
-  }
-  &:focus + ${Ul} {
-    pointer-events: all;
-    opacity: 1;
-  }
-  &:focus + ${Li} {
-    pointer-events: all;
   }
 `
 
