@@ -62,12 +62,12 @@ function HomeContent({ postModal, setPostModal, defaultPosts }) {
       }).then(() => {
         window.location.reload();
       }).catch((error) => {
-        console.log(error);
+        alert(error);
       })
     }
   }
 
-  console.log(posts)
+
   return (
     <Container>
       <PostSection>

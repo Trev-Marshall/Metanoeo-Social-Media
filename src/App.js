@@ -37,7 +37,6 @@ function App() {
     localStorage.removeItem('userMetanoeo');
   }
 
-  console.log(JSON.parse(localStorage.getItem('userMetanoeo')));
   useEffect(() => {
     const postsRef = db.collection('defaultPosts').doc('posts');
     if (localStorage.getItem('userMetanoeo')) {
@@ -47,14 +46,14 @@ function App() {
           updateUser(JSON.parse(localStorage.getItem('userMetanoeo')))
         )
       }).catch((error) => {
-        console.log(error);
+        alert(error);
       })
     } else {
       return
     }
   }, [dispatch]);
 
-  console.log(userPhoto);
+
   return (
     <Router>
       {

@@ -71,20 +71,24 @@ function Settings() {
           userBio: user.bioValue,
           posts: posts,
         }));
-        history.push('/user');
         window.location.reload();
-
-      });
+      })
+        .catch(err => {
+          alert(`There has been an error processing your request: ${err}`);
+        })
     }
   }
 
   return (
     <Container>
+      <ProfileButton onClick={() => history.push("/user")} > Back To Profile</ProfileButton>
       <Form>
         <Label>Change name:</Label>
         <Input type='text' value={user.nameValue} onChange={changeName}></Input>
+        <Hr />
         <Label>Change picture (Format: https://imgur.com/~insert-your-link~.jpg):</Label>
         <Input type='text' value={user.photoValue} onChange={changePicture}></Input>
+        <Hr />
         <Label>Change Bio:</Label>
         <Input type='text' value={user.bioValue} onChange={changeBio}></Input>
         <Button onClick={onSubmit}>Submit</Button>
@@ -96,7 +100,8 @@ function Settings() {
 export default Settings
 
 const Container = styled.div`
-  padding-top: 60px;
+  padding-top: 100px;
+  position: relative;
 `
 
 const Form = styled.form`
@@ -106,13 +111,26 @@ const Form = styled.form`
 `
 
 const Input = styled.input`
+  margin-bottom: 10px;
+`
 
+const Hr = styled.hr`
+  background-color: gray;
+  width: 80%;
 `
 
 const Label = styled.label`
-
+  padding: 5px 0 10px 0;
 `
 
 const Button = styled.button`
+  margin: 15px 0 0 0;
+  background: linear-gradient(141deg, rgba(255,0,213,.6) 0%, rgba(180,120,221,.6) 48%, rgba(33,123,203,.6) 100%);
+`
 
+const ProfileButton = styled.button`
+  position: fixed;
+  top: 80px;
+  left: 40px;
+  border: 1px solid black;
 `
