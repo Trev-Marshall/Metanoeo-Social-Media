@@ -1,16 +1,17 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { selectUserName } from '../Features/signInSlice'
+import { selectUserName, selectUserPhoto } from '../Features/signInSlice'
 
 function Post({ item }) {
   const username = useSelector(selectUserName);
+  const userpic = useSelector(selectUserPhoto);
 
   return (
     <Container>
       <TopDiv>
         <UserInfo>
-          <UserPhoto src="https://imgur.com/oWr9MTw.png" />
+          <UserPhoto src={userpic} />
           <UserName>{username}</UserName>
         </UserInfo>
         <OptionThingy>&gt;</OptionThingy>

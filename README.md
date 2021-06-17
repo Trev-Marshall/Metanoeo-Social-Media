@@ -1,6 +1,43 @@
-# Getting Started with Create React App
+# Metanoeo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Social media side project created from scratch. This was my very first project with absolutely no outside mentorship or guidance.
+
+## How to start
+
+Simply clone the code.
+Open terminal in code
+type 'npm install' (make sure to have npm and node.js installed)
+type 'npm start'
+Then watch the console as it will mention that there should be a file named 'firebase' in the 'src' folder.
+Add a file named 'firebase.js' in the src folder and add the below code in it..
+Note: before adding this code be sure to create your own firebase account and start your own _firestore_ project. This config file should appear in your project settings from which you can copy and paste from.
+
+```
+import firebase from "firebase/app";
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+var firebaseConfig = {
+  apiKey: [your apiKey],
+  authDomain: [your authDomain],
+  projectId: [your projectId],
+  storageBucket: [your storageBucket],
+  messagingSenderId: [your messagingSenderId],
+  appId: [your appId],
+  measurementId: [your measurementId]
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+const auth = firebase.auth();
+const db = firebase.firestore();
+const provider = new firebase.auth.GoogleAuthProvider();
+
+export default db;
+export { db, auth, provider };
+```
+
+_Below are the default instructions that come with every react application_
 
 ## Available Scripts
 

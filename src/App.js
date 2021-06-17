@@ -205,6 +205,7 @@ const NotifPara = styled.p`
 const UserPhoto = styled.img`
   height: 50px;
   border-radius: 50%;
+  width: 50px;
 `
 
 const Dropdown = styled.div`

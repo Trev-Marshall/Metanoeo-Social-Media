@@ -72,7 +72,7 @@ function HomeContent({ postModal, setPostModal, defaultPosts }) {
     <Container>
       <PostSection>
         {posts &&
-          posts.map((item, i) =>
+          posts.slice(0).reverse().map((item, i) =>
           (
             <Post
               key={i}
